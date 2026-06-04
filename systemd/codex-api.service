@@ -1,0 +1,17 @@
+[Unit]
+Description=Codex ChatGPT Pro OpenAI-compatible API Proxy
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/codex-chatgpt-for-api
+Environment=HOST=0.0.0.0
+Environment=PORT=8787
+Environment=CODEX_AUTH_FILE=/root/.codex/auth.json
+ExecStart=/usr/bin/npm run serve:env
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

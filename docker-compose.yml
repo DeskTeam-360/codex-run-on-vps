@@ -1,0 +1,17 @@
+services:
+  codex-api:
+    image: node:20-slim
+    container_name: codex-chatgpt-api
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./:/app
+      # Mount auth Codex dari host VPS (wajib sudah login dulu di host)
+      - ${CODEX_AUTH_FILE:-~/.codex/auth.json}:/root/.codex/auth.json:ro
+    ports:
+      - "${PORT:-8787}:8787"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8787
+      CODEX_AUTH_FILE: /root/.codex/auth.json
+    command: sh -c "npm install && npm run serve:env"
