@@ -4,12 +4,13 @@ After=network.target
 
 [Service]
 Type=simple
-User=root
-WorkingDirectory=/opt/codex-chatgpt-for-api
+User=ubuntu
+Group=ubuntu
+Environment=HOME=/home/ubuntu
 Environment=HOST=0.0.0.0
 Environment=PORT=8787
-Environment=CODEX_AUTH_FILE=/root/.codex/auth.json
-ExecStart=/usr/bin/npm run serve:env
+Environment=CODEX_AUTH_FILE=/home/ubuntu/.codex/auth.json
+ExecStart=/bin/bash /home/ubuntu/codex-run-on-vps/scripts/start-service.sh
 Restart=on-failure
 RestartSec=10
 
