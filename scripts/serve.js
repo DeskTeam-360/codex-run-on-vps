@@ -9,8 +9,7 @@ const authFile =
   path.join(os.homedir(), ".codex", "auth.json");
 
 const bin = path.join(
-  path.dirname(require.resolve("@thkdog/codex-openai-proxy/package.json")),
-  "dist",
+  path.dirname(require.resolve("@thkdog/codex-openai-proxy")),
   "cli.js"
 );
 
