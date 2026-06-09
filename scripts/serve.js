@@ -12,10 +12,11 @@ const bin = path.join(
   path.dirname(require.resolve("@thkdog/codex-openai-proxy")),
   "cli.js"
 );
+const wsPolyfill = path.join(__dirname, "ws-polyfill.cjs");
 
 const child = spawn(
   process.execPath,
-  [bin, "--host", host, "--port", port, "--auth-file", authFile],
+  ["-r", wsPolyfill, bin, "--host", host, "--port", port, "--auth-file", authFile],
   { stdio: "inherit", env: process.env }
 );
 

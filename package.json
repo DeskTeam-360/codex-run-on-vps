@@ -6,13 +6,14 @@
   "scripts": {
     "login": "codex login --device-auth",
     "login:status": "codex login status",
-    "serve": "codex-openai-proxy --host 0.0.0.0 --port 8787 --auth-file ~/.codex/auth.json",
+    "serve": "node -r ./scripts/ws-polyfill.cjs ./node_modules/@thkdog/codex-openai-proxy/dist/cli.js --host 0.0.0.0 --port 8787 --auth-file ~/.codex/auth.json",
     "serve:env": "node scripts/serve.js",
     "health": "curl -s http://127.0.0.1:8787/health",
     "models": "curl -s http://127.0.0.1:8787/v1/models"
   },
   "dependencies": {
-    "@thkdog/codex-openai-proxy": "^1.0.1"
+    "@thkdog/codex-openai-proxy": "^1.0.1",
+    "ws": "^8.18.2"
   },
   "engines": {
     "node": ">=18"
